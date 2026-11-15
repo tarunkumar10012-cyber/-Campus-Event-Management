@@ -1,367 +1,135 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Vehicle Rental Platform</title>
-
-    <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f2f2;
-            margin: 0;
-        }
-
-        header {
-            background-color: navy;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        nav {
-            background-color: black;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 15px;
-            text-decoration: none;
-        }
-
-        section {
-            padding: 25px;
-        }
-
-        .vehicles {
-            text-align: center;
-        }
-
-        .vehicle {
-            background-color: white;
-            display: inline-block;
-            width: 250px;
-            margin: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            vertical-align: top;
-        }
-
-        .vehicle img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: navy;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: royalblue;
-        }
-
-        form {
-            background-color: white;
-            padding: 20px;
-            max-width: 400px;
-            border-radius: 8px;
-        }
-
-        input, select {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-        }
-
-        #about {
-            background-color: white;
-            line-height: 1.7;
-        }
-
-        footer {
-            background-color: navy;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <h1>Vehicle Rental Platform</h1>
-        <p>Rent Your Vehicle Easily and Comfortably</p>
-    </header>
-
-    <nav>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Event Management Portal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <h2>CampusConnect</h2>
+      <div>
         <a href="#home">Home</a>
-        <a href="#vehicles">Vehicles</a>
-        <a href="#booking">Booking</a>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <button onclick="showAdmin()">Admin</button>
+      </div>
     </nav>
 
-    <section id="home">
-        <h2>Welcome to Our Vehicle Rental Platform</h2>
-
-        <p>
-            Find the right vehicle for your journey.
-            We offer cars, bikes and scooters at affordable
-            daily rental prices.
-        </p>
+    <!-- Home Section -->
+    <section class="hero" id="home">
+      <h1>Welcome to Campus Event Portal</h1>
+      <p>Discover, Register and Participate in Campus Events.</p>
+      <a href="#events" class="main-btn">Explore Events</a>
     </section>
 
-    <section id="vehicles" class="vehicles">
-        <h2>Our Available Vehicles</h2>
+    <!-- Events Section -->
+    <section class="events" id="events">
+      <h1>Upcoming Campus Events</h1>
 
-        <div class="vehicle">
-            <img
-                src="https://imgd-ct.aeplcdn.com/664x415/n/cw/ec/159099/swift-exterior-left-front-three-quarter-33.jpeg?isig=0&q=80"
-                alt="Maruti Swift car">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search events..."
+        onkeyup="searchEvents()"
+      />
 
-            <h3>Maruti Swift</h3>
-            <p>Type: Car</p>
-            <p>Price: Rs. 1149 per day</p>
-
-            <button onclick="selectVehicle('Maruti Swift')">
-                Book Now
-            </button>
+      <div class="event-container" id="eventList">
+        <div class="event-card">
+          <h2>Web Development Workshop</h2>
+          <p>Date: 20 November 2026</p>
+          <p>Venue: Computer Lab</p>
+          <p>Available Seats: <span id="seat1">30</span></p>
+          <p>Learn HTML, CSS and JavaScript.</p>
+          <button onclick="registerEvent(1)">Register Now</button>
         </div>
 
-        <div class="vehicle">
-            <img
-                src="https://imgcdn.zigwheels.my/large/gallery/color/89/1414/royal-enfield-classic-350-color-794841.jpg"
-                alt="Royal Enfield motorcycle">
-
-            <h3>Royal Enfield</h3>
-            <p>Type: Bike</p>
-            <p>Price: Rs. 659 per day</p>
-
-            <button onclick="selectVehicle('Royal Enfield')">
-                Book Now
-            </button>
+        <div class="event-card">
+          <h2>Coding Competition</h2>
+          <p>Date: 23 November 2026</p>
+          <p>Venue: Seminar Hall</p>
+          <p>Available Seats: <span id="seat2">25</span></p>
+          <p>Show your programming skills.</p>
+          <button onclick="registerEvent(2)">Register Now</button>
         </div>
 
-        <div class="vehicle">
-            <img
-                src="https://cdn.bikedekho.com/processedimages/honda/2025-activa-125/640X309/2025-activa-1256789e15c2613e.jpg"
-                alt="Honda Activa scooter">
-
-            <h3>Honda Activa</h3>
-            <p>Type: Scooter</p>
-            <p>Price: Rs. 379  per day</p>
-
-            <button onclick="selectVehicle('Honda Activa')">
-                Book Now
-            </button>
+        <div class="event-card">
+          <h2>AI Technology Seminar</h2>
+          <p>Date: 26 November 2026</p>
+          <p>Venue: Auditorium</p>
+          <p>Available Seats: <span id="seat3">40</span></p>
+          <p>Explore the future of Artificial Intelligence.</p>
+          <button onclick="registerEvent(3)">Register Now</button>
         </div>
+      </div>
     </section>
 
-    <section id="booking">
-        <h2>Book Your Vehicle</h2>
+    <!-- Registration Section -->
+    <section class="registration">
+      <h1>Student Registration</h1>
 
-        <form id="bookingForm">
+      <form id="registrationForm">
+        <input
+          type="text"
+          id="studentName"
+          placeholder="Enter Your Name"
+          required
+        />
 
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" required>
+        <input
+          type="email"
+          id="studentEmail"
+          placeholder="Enter Your Email"
+          required
+        />
 
-            <label for="vehicle">Select Vehicle:</label>
+        <input
+          type="text"
+          id="studentId"
+          placeholder="Enter Student ID"
+          required
+        />
 
-            <select id="vehicle" required>
-                <option value="">Choose a Vehicle</option>
-                <option>Maruti Swift</option>
-                <option>Royal Enfield</option>
-                <option>Honda Activa</option>
-            </select>
+        <select id="eventChoice" required>
+          <option value="">Select Event</option>
+          <option value="1">Web Development Workshop</option>
+          <option value="2">Coding Competition</option>
+          <option value="3">AI Technology Seminar</option>
+        </select>
 
-            <label for="pickup">Pickup Date:</label>
-            <input type="date" id="pickup" required>
+        <button type="submit">Submit Registration</button>
+      </form>
 
-            <label for="returnDate">Return Date:</label>
-            <input type="date" id="returnDate" required>
-
-            <button type="submit">Submit Booking</button>
-
-        </form>
-
-        <p id="result"></p>
+      <p id="message"></p>
     </section>
 
-    <section id="about">
-        <h2>About Us</h2>
-
-        <p>
-            The Vehicle Rental Platform is a web-based project
-            developed to make vehicle rental services easier
-            and more convenient for customers.
-        </p>
-
-        <p>
-            Customers can view different vehicles, compare
-            rental prices and select a suitable vehicle
-            according to their needs and budget.
-        </p>
-
-        <p>
-            Our platform provides rental options for cars,
-            bikes and scooters. Customers can select their
-            pickup date, return date and preferred vehicle
-            through a simple booking form.
-        </p>
-
-        <p>
-            The main objective of this project is to reduce
-            the time required to find and rent a vehicle.
-            It also demonstrates how HTML, CSS and JavaScript
-            can be used to develop a user-friendly website.
-        </p>
-
-
+    <!-- Admin Dashboard -->
+    <section class="admin" id="admin">
+      <h1>Admin Dashboard</h1>
+      <p>Total Registrations: <span id="total">0</span></p>
+      <p>Web Workshop Seats: <span id="adminSeat1">30</span></p>
+      <p>Coding Competition Seats: <span id="adminSeat2">25</span></p>
+      <p>AI Seminar Seats: <span id="adminSeat3">40</span></p>
+      <button onclick="hideAdmin()">Close Dashboard</button>
     </section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-
-        <p>Email: xyz@example.com</p>
-        <p>Phone: +91 xyz</p>
-        <p>Working Days: Monday to Saturday</p>
+    <!-- About Section -->
+    <section class="about" id="about">
+      <h1>About Our Portal</h1>
+      <p>
+        Campus Event Management Portal helps students discover campus events and
+        register online. It also helps organizers manage registrations and
+        available seats easily.
+      </p>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>Vehicle Rental Platform</p>
-        <p>© 2026 All Rights Reserved</p>
+      <p>© 2026 CampusConnect | All Rights Reserved</p>
     </footer>
-    <script>
-        let seats = [30, 25, 40];
-let totalRegistrations = 0;
-let registrations = [];
 
-// Register for an event
-function registerEvent(id) {
-  if (seats[id - 1] > 0) {
-    document.getElementById("eventChoice").value = id;
-
-    document.querySelector(".registration").scrollIntoView({
-      behavior: "smooth",
-    });
-
-    document.getElementById("studentName").focus();
-  } else {
-    alert("Sorry! No seats available.");
-  }
-}
-
-// Submit Registration Form
-document
-  .getElementById("registrationForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let name = document.getElementById("studentName").value;
-    let email = document.getElementById("studentEmail").value;
-    let studentId = document.getElementById("studentId").value;
-    let eventId = Number(document.getElementById("eventChoice").value);
-
-    if (!eventId) {
-      alert("Please select an event.");
-      return;
-    }
-
-    // Check duplicate registration
-    let duplicate = registrations.some(function (reg) {
-      return (
-        reg.eventId === eventId &&
-        (reg.email === email || reg.studentId === studentId)
-      );
-    });
-
-    if (duplicate) {
-      alert("You have already registered for this event.");
-      return;
-    }
-
-    // Check available seats
-    if (seats[eventId - 1] > 0) {
-      seats[eventId - 1]--;
-
-      totalRegistrations++;
-
-      let confirmationId = "CE" + Date.now();
-
-      registrations.push({
-        name: name,
-        email: email,
-        studentId: studentId,
-        eventId: eventId,
-      });
-
-      // Update seat count
-      document.getElementById("seat" + eventId).innerText = seats[eventId - 1];
-
-      // Update Admin Dashboard
-      document.getElementById("adminSeat" + eventId).innerText =
-        seats[eventId - 1];
-
-      document.getElementById("total").innerText = totalRegistrations;
-
-      // Show confirmation
-      document.getElementById("message").innerHTML =
-        "Registration Successful!<br>" +
-        "Welcome " +
-        name +
-        "<br>" +
-        "Confirmation ID: " +
-        confirmationId +
-        "<br><button onclick='window.print()'>Print Confirmation</button>";
-
-      document.getElementById("registrationForm").reset();
-
-      alert("Your registration is successful!");
-    } else {
-      alert("Sorry! This event is fully booked.");
-    }
-  });
-
-// Search Events
-function searchEvents() {
-  let search = document.getElementById("search").value.toLowerCase();
-
-  let cards = document.getElementsByClassName("event-card");
-
-  for (let i = 0; i < cards.length; i++) {
-    let title = cards[i].getElementsByTagName("h2")[0].innerText.toLowerCase();
-
-    if (title.includes(search)) {
-      cards[i].style.display = "block";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
-}
-
-// Show Admin Dashboard
-function showAdmin() {
-  document.getElementById("admin").style.display = "block";
-
-  document.getElementById("admin").scrollIntoView({
-    behavior: "smooth",
-  });
-}
-
-// Hide Admin Dashboard
-function hideAdmin() {
-  document.getElementById("admin").style.display = "none";
-}
-    </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
