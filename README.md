@@ -62,4 +62,5 @@ Developed collaboratively as a college project.
 
 ## License
 
-This project is created for educational purposes.
+This project is created for educational purposes. 
+
